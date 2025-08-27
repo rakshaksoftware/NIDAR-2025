@@ -42,3 +42,4 @@ This project documents the process of setting up object detection on the **Jetso
 
 ### Day 3
 - To install pyrealsense: https://github.com/IntelRealSense/librealsense/issues/6964
+- Installing Python 3.9: https://arcanesciencelab.wordpress.com/2021/02/14/building-python-3-9-1-on-jetpack-4-5-and-the-jetson-xavier-nx/
