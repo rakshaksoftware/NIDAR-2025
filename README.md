@@ -38,3 +38,7 @@ This project documents the process of setting up object detection on the **Jetso
 ## Running a New Docker Container  
 ```bash
 ./docker/run.sh
+```
+
+### Day 3
+- To install pyrealsense: https://github.com/IntelRealSense/librealsense/issues/6964
