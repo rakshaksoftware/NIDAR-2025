@@ -40,6 +40,26 @@ This project documents the process of setting up object detection on the **Jetso
 ./docker/run.sh
 ```
 
-### Day 3
+### 28 Aug
 - To install pyrealsense: https://github.com/IntelRealSense/librealsense/issues/6964
 - Installing Python 3.9: https://arcanesciencelab.wordpress.com/2021/02/14/building-python-3-9-1-on-jetpack-4-5-and-the-jetson-xavier-nx/
+- Changed desktop appearance
+- Found intel realsense viewer depth camera
+- First install SDK package of realsense
+- **Building librealsense - Using vcpkg**:: https://github.com/IntelRealSense/librealsense
+   - You can download and install librealsense using the vcpkg dependency manager:
+   - git clone https://github.com/Microsoft/vcpkg.git
+   - cd vcpkg
+     -./bootstrap-vcpkg.sh
+     - ./vcpkg integrate install
+     - ./vcpkg install realsense2
+   - But this is of no use
+   - Then again tried installing librealsense
+   - https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md
+- but then to use for python, want to install **pyrealsense2**
+   - https://github.com/IntelRealSense/librealsense/issues/6964
+   - https://github.com/IntelRealSense/librealsense/releases/
+
+- tried installing this but now its asking for python greater version
+- so @Harshil is debugging
+
