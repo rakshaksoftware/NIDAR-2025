@@ -42,7 +42,7 @@ This project documents the process of setting up object detection on the **Jetso
 
 ### 28 Aug
 - To install pyrealsense: https://github.com/IntelRealSense/librealsense/issues/6964
-- Installing Python 3.9: https://arcanesciencelab.wordpress.com/2021/02/14/building-python-3-9-1-on-jetpack-4-5-and-the-jetson-xavier-nx/
+
 - Changed desktop appearance
 - Found intel realsense viewer depth camera
 - First install SDK package of realsense
@@ -61,5 +61,7 @@ This project documents the process of setting up object detection on the **Jetso
    - https://github.com/IntelRealSense/librealsense/releases/
 
 - tried installing this but now its asking for python greater version
-- so @Harshil is debugging
+- Installing Python 3.9: https://arcanesciencelab.wordpress.com/2021/02/14/building-python-3-9-1-on-jetpack-4-5-and-the-jetson-xavier-nx/
+- But this command cmake ../ -DFORCE_RSUSB_BACKEND=ON -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLE=... gave error as it was detecting python older version only
+- So, changed command to cmake ../ -DFORCE_RSUSB_BACKEND=ON -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLEusr/bin/local/python3.9 {directory of new python version}. And, now it was able to access.
 
