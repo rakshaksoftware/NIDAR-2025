@@ -48,11 +48,13 @@ This project documents the process of setting up object detection on the **Jetso
 - First install SDK package of realsense
 - **Building librealsense - Using vcpkg**:: https://github.com/IntelRealSense/librealsense
    - You can download and install librealsense using the vcpkg dependency manager:
-   - git clone https://github.com/Microsoft/vcpkg.git
-   - cd vcpkg
-     -./bootstrap-vcpkg.sh
-     - ./vcpkg integrate install
-     - ./vcpkg install realsense2
+     ```bash
+     git clone https://github.com/Microsoft/vcpkg.git
+     cd vcpkg
+     ./bootstrap-vcpkg.sh
+     ./vcpkg integrate install
+     ./vcpkg install realsense2
+       ``` 
    - But this is of no use
    - Then again tried installing librealsense
    - https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md
