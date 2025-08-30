@@ -67,6 +67,10 @@ This project documents the process of setting up object detection on the **Jetso
 - 
 ### 30 Aug
 
+- To open the camera
+```bash
+realsense-viewer
+``` 
 - To check pyrealsense2 :
 ```bash
 python3.9 -m pip show pyrealsense2
