@@ -64,4 +64,9 @@ This project documents the process of setting up object detection on the **Jetso
 - Installing Python 3.9: https://arcanesciencelab.wordpress.com/2021/02/14/building-python-3-9-1-on-jetpack-4-5-and-the-jetson-xavier-nx/
 - But this command cmake ../ -DFORCE_RSUSB_BACKEND=ON -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLE=... gave error as it was detecting python older version only
 - So, changed command to cmake ../ -DFORCE_RSUSB_BACKEND=ON -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLEusr/bin/local/python3.9 {directory of new python version}. And, now it was able to access.
+- 
+### 30 Aug
+
+- To check pyrealsense2 : python3.9 -m pip show pyrealsense2
+- But on import pyrealsense2 , it gives error as version `GLIBCXX_3.4.26' not found
 
