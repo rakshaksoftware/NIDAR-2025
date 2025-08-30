@@ -67,6 +67,9 @@ This project documents the process of setting up object detection on the **Jetso
 - 
 ### 30 Aug
 
-- To check pyrealsense2 : python3.9 -m pip show pyrealsense2
+- To check pyrealsense2 :
+```bash
+python3.9 -m pip show pyrealsense2
+``` 
 - But on import pyrealsense2 , it gives error as version `GLIBCXX_3.4.26' not found
 
