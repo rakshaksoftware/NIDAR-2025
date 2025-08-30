@@ -79,4 +79,16 @@ python3.9 -m pip show pyrealsense2
 ``` 
 - But on import pyrealsense2 , it gives error as version `GLIBCXX_3.4.26' not found
 - Trying a different way to download pyrealsense2
-
+```bash
+sudo apt-get update && sudo apt-get upgrade
+sudo apt-get install -y python3 python3-dev python3-pip python3-setuptools git libssl-dev libusb-1.0-0-dev pkg-config libgtk-3-dev libglfw3-dev libgl1-mesa-dev libglu1-mesa-dev
+git clone https://github.com/IntelRealSense/librealsense.git
+cd librealsense
+sudo ./scripts/setup_udev_rules.sh
+mkdir build
+cd build
+cmake ../ -DBUILD_PYTHON_BINDINGS:bool=true -DPYTHON_EXECUTABLE=$(which python3)
+make -j4
+sudo make install
+``` 
+- It worked :) now we are able to import pyrealsense2
