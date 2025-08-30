@@ -78,4 +78,5 @@ realsense-viewer
 python3.9 -m pip show pyrealsense2
 ``` 
 - But on import pyrealsense2 , it gives error as version `GLIBCXX_3.4.26' not found
+- Trying a different way to download liberalsense
 
