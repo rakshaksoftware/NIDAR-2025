@@ -92,3 +92,24 @@ make -j4
 sudo make install
 ``` 
 - It worked :) now we are able to import pyrealsense2
+### 3 SEP 
+- Installing pycuda using python3.9
+- Running the rgbimageopen.py file to open live rgb feed of the camera
+  
+### 6 SEP 
+- Installing tensorRT using build as we can't directly pip install using python3.9 it is compatible with 3.6
+- Faced an error where we had to update cmake form 3.10.2 to 3.27
+- Installing cmake3.27
+```bash
+sudo apt purge --auto-remove cmake
+sudo apt update
+sudo apt install build-essential libssl-dev
+cd /tmp
+wget https://cmake.org/files/v3.27/cmake-3.27.1.tar.gz
+tar -xzvf cmake-3.27.1.tar.gz
+cd cmake-3.27.1
+./bootstrap
+make -j$(nproc)
+sudo make install
+cmake --version
+```   
