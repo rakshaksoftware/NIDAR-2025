@@ -119,3 +119,8 @@ cmake --version
 - Further thought process.
 - Facing some problems we want to download pyrealsense2 so we can't use docker as it has smaller version of python-> python 3.6.9 and if we don't use docker then  we are not able to install tensorRT using python 3.9 and while using python 3.6 we are not able to install pyrealsense2
   
+
+### 25 SEP 
+
+- live feed starts but it is not able to detect when we are using .onnx model of yolo v8. When we are directly running yolov8 then it is able to detect people
+   
