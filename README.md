@@ -113,3 +113,9 @@ make -j$(nproc)
 sudo make install
 cmake --version
 ```   
+
+### 23 SEP 
+
+- Further thought process.
+- Facing some problems we want to download pyrealsense2 so we can't use docker as it has smaller version of python-> python 3.6.9 and if we don't use docker then  we are not able to install tensorRT using python 3.9 and while using python 3.6 we are not able to install pyrealsense2
+  
