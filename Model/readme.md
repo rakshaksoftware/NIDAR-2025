@@ -10,5 +10,6 @@
 
    c. **CCTV based images**: https://www.kaggle.com/datasets/constantinwerner/human-detection-dataset
 
-3. Some new models found:
+2. Some new models found:
+   
     A. Visibility-Enhanced DINO (VE-DINO) Model : https://www.mdpi.com/2624-6511/8/1/12
