@@ -124,3 +124,11 @@ cmake --version
 
 - live feed starts but it is not able to detect when we are using .onnx model of yolo v8. When we are directly running yolov8 then it is able to detect people
    
+### 5 OCT
+
+- Mihir didn't come, So, I need to do documentation
+- https://www.jetson-ai-lab.com/initial_setup_jon.html#__tabbed_2_2
+- Didn't know firmware so did mistake of installing image of some other version for flash, then, reflashed after installing for correct version
+- do sudo apt update first
+- After connecting the Arducam, it overheated and started smoking — still need to determine whether it’s a compatibility issue or something else
+- Chromium browser install error tried deleating and reinstalling still didnt work
