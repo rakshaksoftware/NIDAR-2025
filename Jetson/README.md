@@ -132,3 +132,15 @@ cmake --version
 - do sudo apt update first
 - After connecting the Arducam, it overheated and started smoking — still need to determine whether it’s a compatibility issue or something else
 - Chromium browser install error tried deleating and reinstalling still didnt work
+
+### 6 OCT
+
+-installed chromium using putty on laptop and flatpak as snap installation has some issue
+```bash
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub org.chromium.Chromium
+flatpak run org.chromium.Chromium
+```
+
+- then for camera setup in orin: https://youtu.be/gJPIJ3yxME0?si=w2vFzKsPabGPNQX-
