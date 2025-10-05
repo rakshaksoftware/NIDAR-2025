@@ -135,7 +135,8 @@ cmake --version
 
 ### 6 OCT
 
--installed chromium using putty on laptop and flatpak as snap installation has some issue
+- again Mihir didn't come
+- installed chromium using putty on laptop and flatpak as snap installation has some issue
 ```bash
 sudo apt install flatpak
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -144,3 +145,5 @@ flatpak run org.chromium.Chromium
 ```
 
 - then for camera setup in orin: https://youtu.be/gJPIJ3yxME0?si=w2vFzKsPabGPNQX-
+- but now it's detecting camera in video0 port but "nvgstcapture-1.0" command showing blackscreen
+
