@@ -147,3 +147,12 @@ flatpak run org.chromium.Chromium
 - then for camera setup in orin: https://youtu.be/gJPIJ3yxME0?si=w2vFzKsPabGPNQX-
 - but now it's detecting camera in video0 port but "nvgstcapture-1.0" command showing blackscreen
 
+### 7 OCT  
+
+```bash
+git clone https://github.com/ArduCAM/MIPI_Camera.git
+cd MIPI_Camera/Jetson
+./install_pivariety_pkgs.sh -p kernel_driver
+sudo reboot
+ls /dev/video*
+```
