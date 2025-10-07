@@ -123,6 +123,7 @@ cmake --version
 ### 25 SEP 
 
 - live feed starts but it is not able to detect when we are using .onnx model of yolo v8. When we are directly running yolov8 then it is able to detect people
+- Used a different code and then we were able to do that 
    
 ### 5 OCT
 
