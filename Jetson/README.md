@@ -126,7 +126,7 @@ cmake --version
    
 ### 5 OCT
 
-- Mihir didn't come, So, I need to do documentation
+
 - https://www.jetson-ai-lab.com/initial_setup_jon.html#__tabbed_2_2
 - Didn't know firmware so did mistake of installing image of some other version for flash, then, reflashed after installing for correct version
 - do sudo apt update first
@@ -135,7 +135,6 @@ cmake --version
 
 ### 6 OCT
 
-- again Mihir didn't come
 - installed chromium using putty on laptop and flatpak as snap installation has some issue
 ```bash
 sudo apt install flatpak
