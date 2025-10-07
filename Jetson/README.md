@@ -131,7 +131,7 @@ cmake --version
 - https://www.jetson-ai-lab.com/initial_setup_jon.html#__tabbed_2_2
 - Didn't know firmware so did mistake of installing image of some other version for flash, then, reflashed after installing for correct version
 - do sudo apt update first
-- After connecting the Arducam, it overheated and started smoking — still need to determine whether it’s a compatibility issue or something else
+- After connecting the Arducam, it overheated and started smoking because we connected it ulta
 - Chromium browser install error tried deleating and reinstalling still didnt work
 
 ### 6 OCT
@@ -149,10 +149,7 @@ flatpak run org.chromium.Chromium
 
 ### 7 OCT  
 
+
 ```bash
-git clone https://github.com/ArduCAM/MIPI_Camera.git
-cd MIPI_Camera/Jetson
-./install_pivariety_pkgs.sh -p kernel_driver
-sudo reboot
-ls /dev/video*
+gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! xvimagesink
 ```
