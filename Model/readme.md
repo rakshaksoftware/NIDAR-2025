@@ -1,5 +1,12 @@
 ## Progress:
 
+### Date: 7 Oct
+1. Not using the visdrone dataset:
+   1. Bcoz some images have many overlapping bounding boxes and too many people in a single image
+   2. The bounding box in a few images contains more then one people
+2. Working on refining the dataset from google, kaggle- mostly based on drone based images captured in open areas
+3. Will train with yolov5, yolov8, yolov11 - and see which works best for human detection
+
 ### Date:28 Sep
 1. Researched on SRO based human detection dataset, found very good datasets like:
 
