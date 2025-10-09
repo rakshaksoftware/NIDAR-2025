@@ -1,5 +1,10 @@
 ## Progress:
-
+### Date: 8 Oct
+1. Trained yolo11n on a dataset and achieved precision 0f 0.9376 and recall of 0.8838 with
+   1. map: 0.6209
+   2. map50: 0.9381
+   3. map75: 0.7025
+2. Now plan to merge various data sets and train it on yolov11 s,m,l and if possible then x
 ### Date: 7 Oct
 1. Not using the visdrone dataset:
    1. Bcoz some images have many overlapping bounding boxes and too many people in a single image
