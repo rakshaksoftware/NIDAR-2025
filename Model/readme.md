@@ -1,4 +1,13 @@
 ## Progress:
+
+### Date: 9 Oct
+1. Trained yolo11s on merged dataset and achieved precision 0f 0.68 and recall of 0.38 with
+   1. map: 0.2217
+   2. map50: 0.4482
+   3. map75: 0.2003
+2. model performance has decreased due to varying dataset
+3. but the model is able to predict well on data set which it hasn't seen before which was not the case with 11n
+4. will try to train it on different(selective) dataset so that it generalises well and will try older version of yolo too.
 ### Date: 8 Oct
 1. Trained yolo11n on a dataset and achieved precision 0f 0.9376 and recall of 0.8838 with
    1. map: 0.6209
