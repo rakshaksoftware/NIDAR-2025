@@ -151,3 +151,7 @@ flatpak run org.chromium.Chromium
 
 
 - Tried running the camera on the jetson , the camera is getting detected but we are not able to get the feed from it due to some reason getting multiple errors. We have ordered a new usb camera and going to try using it as it would be more easy where to get where the problem actually is 
+
+### 9 OCT  
+
+- Running the file drone_simple.py on the jetson to give simple commands to the drone using the MAVlink commands
