@@ -150,6 +150,4 @@ flatpak run org.chromium.Chromium
 ### 7 OCT  
 
 
-```bash
-gst-launch-1.0 v4l2src device=/dev/video0 ! videoconvert ! xvimagesink
-```
+- Tried running the camera on the jetson , the camera is getting detected but we are not able to get the feed from it due to some reason getting multiple errors. We have ordered a new usb camera and going to try using it as it would be more easy where to get where the problem actually is 
