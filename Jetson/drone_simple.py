@@ -2,15 +2,17 @@ from dronekit import connect, VehicleMode
 from pymavlink import mavutil
 import time
 
-# --- Set the connection string
-# For SITL Simulator: "tcp:127.0.0.1:5760"
-# For real drone via Telemetry Radio: "/dev/ttyUSB0"
-connection_string = "/dev/ttyUSB0"
+# --- Set the connection string for UDP
+# This script will listen for incoming UDP packets on port 14550.
+# Ensure your flight controller is configured to send MAVLink data
+# to this computer's IP address on port 14550.
+connection_string = "udpin:0.0.0.0:14550"
 
 # --- Connect to the vehicle
-print(f"Connecting to vehicle on: {connection_string}")
-# Use a baud rate of 57600 for most telemetry radios
-vehicle = connect(connection_string, wait_ready=True, baud=57600)
+print(f"Waiting for vehicle to connect on: {connection_string}")
+# Baud rate is not needed for UDP connections
+vehicle = connect(connection_string, wait_ready=True)
+print("Vehicle connected!")
 
 def arm_and_takeoff(target_altitude):
     """
@@ -50,8 +52,8 @@ def move_forward(distance_m):
     """
     print(f"Moving forward {distance_m} meters")
     msg = vehicle.message_factory.set_position_target_local_ned_encode(
-        0,       # time_boot_ms (not used)
-        0, 0,    # target system, target component
+        0,      # time_boot_ms (not used)
+        0, 0,   # target system, target component
         # Frame of reference is relative to the drone's body
         mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
         0b0000111111111000, # A special "mask" to only use position
