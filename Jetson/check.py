@@ -1,74 +1,136 @@
 import cv2
 import numpy as np
 
-# Load the ONNX model
 model_path = "best.onnx"
 net = cv2.dnn.readNetFromONNX(model_path)
 
-# (Optional) Use CUDA if available
 # net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
 # net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
 
-# Load class names — assuming only one class: "human"
-classes = ["human"]
-
-# Initialize video capture (0 = webcam, or give path to a video file)
+classes = ["human"]  # your model's class names
 cap = cv2.VideoCapture(0)
 
-# Set input image size (depends on training size, e.g., 640x640 for YOLOv8)
-input_width, input_height = 640, 640
-conf_threshold = 0.5
-nms_threshold = 0.4
+# change to your model train size (common: 640)
+IN_W, IN_H = 640, 640
+CONF_THR = 0.5
+NMS_THR = 0.4
+
+# enable to see raw shapes for debugging
+DEBUG = False
 
 while True:
     ret, frame = cap.read()
     if not ret:
         break
 
-    # Prepare the image for the network
-    blob = cv2.dnn.blobFromImage(frame, 1/255.0, (input_width, input_height), swapRB=True, crop=False)
+    ih, iw = frame.shape[:2]
+    blob = cv2.dnn.blobFromImage(frame, 1/255.0, (IN_W, IN_H), swapRB=True, crop=False)
     net.setInput(blob)
-    outputs = net.forward()  # Forward pass
+    outputs = net.forward()
 
-    # Reshape output if necessary (depends on your model)
-    # For YOLOv5/YOLOv8 ONNX, output shape: [1, N, 85]
     outputs = np.array(outputs)
+    if DEBUG:
+        print("raw outputs shape:", outputs.shape)
+
+    # squeeze leading singleton dims
     outputs = np.squeeze(outputs)
+    # after squeeze, outputs could be:
+    # - (N, 85)  typical YOLO (x,y,w,h,obj,cls0,...clsN)
+    # - (M, 6)   [x1,y1,x2,y2,conf,class_id]
+    # - (K, )    unexpected -> skip
+    if outputs.ndim == 1:
+        # nothing to process
+        continue
+    if outputs.ndim == 2 and outputs.shape[1] < 5:
+        # unexpected format
+        if DEBUG:
+            print("unexpected detection vector length:", outputs.shape)
+        continue
 
-    # Lists to store results
-    class_ids = []
-    confidences = []
     boxes = []
+    confidences = []
+    class_ids = []
 
-    image_height, image_width = frame.shape[:2]
+    # iterate rows (each detection)
+    for det in outputs:
+        det = np.asarray(det).flatten()
+        # case A: YOLO-like (cx,cy,w,h,obj_conf, classes...)
+        if det.size >= 6:
+            # assume first 4 are bbox (normalized), 4 = objectness/conf
+            cx, cy, w, h = det[0], det[1], det[2], det[3]
+            obj_conf = float(det[4])
+            scores = det[5:]
+            if DEBUG:
+                print("det size>=6 -> obj_conf", obj_conf, "scores_len", scores.size)
 
-    for detection in outputs:
-        confidence = detection[4]
-        if confidence > conf_threshold:
-            scores = detection[5:]
-            class_id = np.argmax(scores)
-            if scores[class_id] > conf_threshold and classes[class_id] == "human":
-                w, h = int(detection[2] * image_width), int(detection[3] * image_height)
-                x, y = int((detection[0] * image_width) - w / 2), int((detection[1] * image_height) - h / 2)
-                boxes.append([x, y, w, h])
-                confidences.append(float(confidence))
-                class_ids.append(class_id)
+            # skip if objectness too low
+            if obj_conf < CONF_THR:
+                continue
 
-    # Apply Non-Maximum Suppression (NMS)
-    indices = cv2.dnn.NMSBoxes(boxes, confidences, conf_threshold, nms_threshold)
+            if scores.size == 0:
+                # no class scores provided; treat objectness as class confidence and class 0
+                class_conf = obj_conf
+                cls_id = 0
+            else:
+                cls_id = int(np.argmax(scores))
+                class_conf = float(scores[cls_id])
 
-    # Draw bounding boxes
-    for i in indices:
-        i = int(i)
-        box = boxes[i]
-        x, y, w, h = box
-        label = f"{classes[class_ids[i]]}: {confidences[i]:.2f}"
-        color = (0, 255, 0)
-        cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
-        cv2.putText(frame, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
+            # final score threshold
+            if class_conf < CONF_THR:
+                continue
+
+            # only accept if class name is "human"
+            if cls_id >= len(classes) or classes[cls_id] != "human":
+                continue
+
+            # convert normalized center->pixel xywh
+            bw = int(w * iw)
+            bh = int(h * ih)
+            bx = int(cx * iw - bw / 2)
+            by = int(cy * ih - bh / 2)
+
+        # case B: some models output [x1,y1,x2,y2,conf,class_id]
+        elif det.size == 6:
+            x1, y1, x2, y2, conf, cls = det
+            bw = int(x2 - x1)
+            bh = int(y2 - y1)
+            bx = int(x1)
+            by = int(y1)
+            class_conf = float(conf)
+            cls_id = int(cls)
+            if class_conf < CONF_THR or cls_id >= len(classes) or classes[cls_id] != "human":
+                continue
+
+        else:
+            # fallback: skip unexpected shapes
+            if DEBUG:
+                print("skipping detection with size", det.size)
+            continue
+
+        # clamp box
+        bx = max(0, min(bx, iw - 1))
+        by = max(0, min(by, ih - 1))
+        bw = max(1, min(bw, iw - bx))
+        bh = max(1, min(bh, ih - by))
+
+        boxes.append([bx, by, bw, bh])
+        confidences.append(float(class_conf))
+        class_ids.append(int(cls_id))
+
+    # perform NMS if there are boxes
+    if len(boxes) > 0:
+        idxs = cv2.dnn.NMSBoxes(boxes, confidences, CONF_THR, NMS_THR)
+        if len(idxs) > 0:
+            # idxs may be nested arrays depending on OpenCV version
+            idxs = np.array(idxs).flatten()
+            for i in idxs:
+                x, y, w, h = boxes[int(i)]
+                label = f"{classes[class_ids[int(i)]]}: {confidences[int(i)]:.2f}"
+                cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                cv2.putText(frame, label, (x, y - 6), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
 
     cv2.imshow("Human Detection", frame)
-    if cv2.waitKey(1) & 0xFF == 27:  # ESC to quit
+    if cv2.waitKey(1) & 0xFF == 27:
         break
 
 cap.release()
