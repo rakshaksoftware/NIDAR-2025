@@ -155,3 +155,8 @@ flatpak run org.chromium.Chromium
 ### 9 OCT  
 
 - Running the file drone_simple.py on the jetson to give simple commands to the drone using the MAVlink commands
+
+### 10 OCT
+
+cd ~
+wget https://github.com/ArduCAM/MIPI_Camera/releases/download/v0.0.3/install_full.sh
