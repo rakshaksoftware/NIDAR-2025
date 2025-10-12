@@ -1,4 +1,13 @@
 ## Progress:
+### Date: 11 Oct
+1. Training on servers is now possible and would use this for upcoming model training.
+2. Did the live detection inside the casde lab and found that the model is not properly able to find the humans and the possible reasons could be:
+     1. the room's environment dosn't matches with the images which we trained it on
+     2. the training data doesn't have good enough dataset
+     3. the model is very heavy for jetson orion
+3. Solution:
+     1. accumulate a very good dataset which would accurately represent the original scenario
+     2. train on yolov5 and yolov8 's smaller model for easy computation
 
 ### Date: 9 Oct
 1. Trained yolo11s on merged dataset and achieved precision 0f 0.68 and recall of 0.38 with
