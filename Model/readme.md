@@ -1,4 +1,7 @@
 ## Progress:
+### Date: 16 oct
+1. started research on transformer based real time detection models specially rt-detrv2
+2. have to study about how and why of transformers (getting a basic idea)
 ### Date: 11 Oct
 1. Training on servers is now possible and would use this for upcoming model training.
 2. Did the live detection inside the casde lab and found that the model is not properly able to find the humans and the possible reasons could be:
