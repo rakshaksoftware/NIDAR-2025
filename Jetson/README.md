@@ -160,3 +160,10 @@ flatpak run org.chromium.Chromium
 
 cd ~
 wget https://github.com/ArduCAM/MIPI_Camera/releases/download/v0.0.3/install_full.sh
+
+### 23 OCT
+
+- Able to run pc through laptop using PuTTY via SSH without any wires, also easily able to transfer files via pscp
+```bash
+pscp [source_file_path] [linux_username]@[linux_ip]:[destination_path]
+```
