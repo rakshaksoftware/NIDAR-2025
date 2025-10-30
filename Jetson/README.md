@@ -165,5 +165,10 @@ wget https://github.com/ArduCAM/MIPI_Camera/releases/download/v0.0.3/install_ful
 
 - Able to run pc through laptop using PuTTY via SSH without any wires, also easily able to transfer files via pscp
 ```bash
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+hostname -I
 pscp [source_file_path] [linux_username]@[linux_ip]:[destination_path]
 ```
+- after hostname -I insert ip address in PuTTY with connection type SSH and write user login password
