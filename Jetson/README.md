@@ -172,3 +172,14 @@ hostname -I
 pscp [source_file_path] [linux_username]@[linux_ip]:[destination_path]
 ```
 - after hostname -I insert ip address in PuTTY with connection type SSH and write user login password
+
+### 30 OCT
+- Setup final human detection model on jetson
+- tried with all three  .onnx, .pt, .engine files
+- still need to figure out issue with . engine file
+
+### 1 NOV
+
+- Learnt about overview of electronics and communication protocols
+- Tried setting up Pixhawk with Jetson Orin and connecting them
+- Using Mission Planner, finding correct code to run using dronekit, MAVlink
