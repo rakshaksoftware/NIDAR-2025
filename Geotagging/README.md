@@ -19,7 +19,6 @@ We need to start with the pinhole camera model which relates 3D world points to 
 
 $$
 \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} = K [R|t] \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}
-
 $$
 
 Where:
@@ -35,7 +34,6 @@ Since the drone height is known, we can use it to solve the under constrained sy
 
 $$
 \begin{bmatrix} X \\ Y \\ Z \end{bmatrix} = R^{-1} \left( K^{-1} \begin{bmatrix} u \\ v \\ 1 \end{bmatrix} \cdot s - t \right)
-
 $$
 
 Where s is a scaling factor determined by the known height of the drone above ground.
