@@ -183,3 +183,11 @@ pscp [source_file_path] [linux_username]@[linux_ip]:[destination_path]
 - Learnt about overview of electronics and communication protocols
 - Tried setting up Pixhawk with Jetson Orin and connecting them
 - Using Mission Planner, finding correct code to run using dronekit, MAVlink
+
+### UnDated
+
+https://github.com/rakshaksoftware/NIDAR-2025/blob/main/Simulations/ArdupilotSITL.pdf
+https://github.com/rakshaksoftware/NIDAR-2025/blob/main/Simulations/ArdupilotSITL_2drones.pdf
+
+The above two links contain the complete documentation on 'How to setup ArduPilot SITL and Gazebo'. The documentation is in depth and also resolves any issues someone may encounter during the setup. The next part in the documentation is about how to simulate a drone on SITL, view it in 3d on Gazebo and control the drone using MAVproxy (the MAVproxy is just a bunch of commands which can be found on the Ardupilot website and hence not all the commands are mentioned here). 
+The 2nd documentation contains the steps to setup 2 drones on SITL and simulate them at once on Gazebo, this was the part where most time was spent since there isn't a proper documentation available on how to do this. I had to go through the gazebo world and model files to understand how the framework works and make changes accordingly. The documentation gives proper steps with a brief explanation about why the changes are made.
