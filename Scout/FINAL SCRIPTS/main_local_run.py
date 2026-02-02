@@ -97,7 +97,7 @@ def open_best_capture():
     "nvvidconv ! video/x-raw, format=BGRx ! "
     "videoconvert ! video/x-raw, format=BGR ! "
     "appsink drop=true sync=false"
-)
+    )
 
     # 2) nvarguscamerasrc 1280x720
     pipelines.append(

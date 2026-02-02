@@ -291,11 +291,11 @@ try:
                 
 
                 send_human(
-        lat=lat_t,
-        lon=lon_t,
-        alt=h,
-        conf=conf
-    )
+                    lat=lat_t,
+                    lon=lon_t,
+                    alt=h,
+                    conf=conf
+                )
 
                 # optionally save crop (rate-limited) - crop from ORIGINAL frame
                 now = time.time()
