@@ -1,0 +1,22 @@
+[General]
+ReportStats=true
+
+[UartEndpoint pixhawk]
+Device=/dev/ttyACM0
+Baud=115200
+
+[UartEndpoint telemetry]
+Device=/dev/ttyTHS1
+Baud=57600
+
+[UdpEndpoint local]
+Mode=Normal
+Address=0.0.0.0
+Port=14550
+
+# Script injection endpoint (guarantees forwarding out to telemetry)
+[UdpEndpoint scriptin]
+Mode=Normal
+Address=127.0.0.1
+Port=14650
+AllowBroadcast=true
